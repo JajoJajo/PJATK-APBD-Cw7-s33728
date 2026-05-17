@@ -1,5 +1,6 @@
 using WebApplication1.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using WebApplication1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddScoped<IPcService, PcService>();
 
 builder.Services.AddDbContext<DatabaseContext>(opt =>
 {
@@ -20,7 +23,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.UseSwaggerUI(opt => opt.SwaggerEndpoint("/openapi/v1.json", "APBD6"));
+    app.UseSwaggerUI(opt => opt.SwaggerEndpoint("/openapi/v1.json", "APBD7"));
 }
 
 app.UseHttpsRedirection();
